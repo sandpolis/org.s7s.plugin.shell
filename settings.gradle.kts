@@ -8,31 +8,4 @@
 //                                                                            //
 //============================================================================//
 
-plugins {
-	id("java-library")
-	id("sandpolis-java")
-	id("sandpolis-module")
-	id("sandpolis-protobuf")
-	id("sandpolis-publish")
-	id("sandpolis-soi")
-	id("sandpolis-plugin")
-}
-
-dependencies {
-	testImplementation("org.junit.jupiter:junit-jupiter-engine:5.3.2")
-
-	if (project.getParent() == null) {
-		api("com.sandpolis:core.instance:0.1.0")
-		api("com.sandpolis:core.net:0.1.0")
-	} else {
-		api(project(":module:com.sandpolis.core.instance"))
-		api(project(":module:com.sandpolis.core.net"))
-	}
-}
-
-sandpolis_plugin {
-	id = project.name
-	coordinate = "com.sandpolis:sandpolis-plugin-shell"
-	name = "Shell Plugin"
-	description = "Shell Plugin"
-}
+rootProject.name = "com.sandpolis.plugin.shell"
