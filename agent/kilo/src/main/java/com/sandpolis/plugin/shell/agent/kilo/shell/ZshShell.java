@@ -7,8 +7,25 @@
 //  as published by the Mozilla Foundation.                                   //
 //                                                                            //
 //============================================================================//
+package com.sandpolis.plugin.shell.agent.kilo.shell;
 
-rootProject.name = "com.sandpolis.plugin.shell"
+import java.util.Base64;
 
-include("agent:kilo")
-include("client:lifegem")
+public class ZshShell extends AbstractShell {
+
+	@Override
+	public String[] searchPath() {
+		return new String[] { "/bin/zsh", "/usr/bin/zsh" };
+	}
+
+	@Override
+	public String[] buildSession() {
+		return new String[] { location, "-i" };
+	}
+
+	@Override
+	public String[] buildCommand(String command) {
+		return new String[] { location, "-c",
+				"echo " + Base64.getEncoder().encodeToString(command.getBytes()) + " | base64 --decode | " + location };
+	}
+}

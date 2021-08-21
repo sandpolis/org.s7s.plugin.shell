@@ -7,8 +7,23 @@
 //  as published by the Mozilla Foundation.                                   //
 //                                                                            //
 //============================================================================//
+package com.sandpolis.plugin.shell.agent.kilo;
 
-rootProject.name = "com.sandpolis.plugin.shell"
+import com.sandpolis.plugin.shell.agent.kilo.shell.BashShell;
+import com.sandpolis.plugin.shell.agent.kilo.shell.CmdShell;
+import com.sandpolis.plugin.shell.agent.kilo.shell.PwshShell;
+import com.sandpolis.plugin.shell.agent.kilo.shell.ZshShell;
 
-include("agent:kilo")
-include("client:lifegem")
+public final class Shells {
+
+	public static final PwshShell PWSH = new PwshShell();
+
+	public static final CmdShell CMD = new CmdShell();
+
+	public static final BashShell BASH = new BashShell();
+
+	public static final ZshShell ZSH = new ZshShell();
+
+	private Shells() {
+	}
+}

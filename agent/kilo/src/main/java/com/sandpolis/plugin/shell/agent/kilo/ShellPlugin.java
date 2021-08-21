@@ -7,8 +7,18 @@
 //  as published by the Mozilla Foundation.                                   //
 //                                                                            //
 //============================================================================//
+package com.sandpolis.plugin.shell.agent.kilo;
 
-rootProject.name = "com.sandpolis.plugin.shell"
+import com.sandpolis.core.instance.plugin.SandpolisPlugin;
+import com.sandpolis.core.net.exelet.Exelet;
+import com.sandpolis.core.net.plugin.ExeletProvider;
+import com.sandpolis.plugin.shell.agent.kilo.exe.ShellExe;
 
-include("agent:kilo")
-include("client:lifegem")
+public final class ShellPlugin extends SandpolisPlugin implements ExeletProvider {
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public Class<? extends Exelet>[] getExelets() {
+		return new Class[] { ShellExe.class };
+	}
+}

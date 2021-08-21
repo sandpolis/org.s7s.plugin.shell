@@ -7,8 +7,19 @@
 //  as published by the Mozilla Foundation.                                   //
 //                                                                            //
 //============================================================================//
+module com.sandpolis.plugin.shell.agent.kilo {
+	exports com.sandpolis.plugin.shell.agent.kilo.exe;
+	exports com.sandpolis.plugin.shell.agent.kilo.shell;
+	exports com.sandpolis.plugin.shell.agent.kilo.stream;
+	exports com.sandpolis.plugin.shell.agent.kilo;
 
-rootProject.name = "com.sandpolis.plugin.shell"
+	requires com.google.common;
+	requires com.google.protobuf;
+	requires com.sandpolis.core.foundation;
+	requires com.sandpolis.core.instance;
+	requires com.sandpolis.core.net;
+	requires com.sandpolis.plugin.shell;
+	requires org.slf4j;
 
-include("agent:kilo")
-include("client:lifegem")
+	provides com.sandpolis.core.instance.plugin.SandpolisPlugin with com.sandpolis.plugin.shell.agent.kilo.ShellPlugin;
+}

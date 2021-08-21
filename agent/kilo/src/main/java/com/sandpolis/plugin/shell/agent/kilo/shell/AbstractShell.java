@@ -7,8 +7,33 @@
 //  as published by the Mozilla Foundation.                                   //
 //                                                                            //
 //============================================================================//
+package com.sandpolis.plugin.shell.agent.kilo.shell;
 
-rootProject.name = "com.sandpolis.plugin.shell"
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-include("agent:kilo")
-include("client:lifegem")
+public abstract class AbstractShell {
+
+	protected final String location = findShell();
+
+	private String findShell() {
+
+		for (String path : searchPath()) {
+			Path p = Paths.get(path);
+			if (Files.exists(p) && Files.isExecutable(p))
+				return path;
+		}
+		return null;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public abstract String[] searchPath();
+
+	public abstract String[] buildSession();
+
+	public abstract String[] buildCommand(String command);
+}

@@ -8,7 +8,22 @@
 //                                                                            //
 //============================================================================//
 
-rootProject.name = "com.sandpolis.plugin.shell"
+plugins {
+	id("java-library")
+	id("sandpolis-java")
+	id("sandpolis-module")
+	id("sandpolis-soi")
+}
 
-include("agent:kilo")
-include("client:lifegem")
+dependencies {
+	testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.2")
+
+	compileOnly(project.getParent()?.getParent()!!)
+}
+
+eclipse {
+	project {
+		name = "com.sandpolis.plugin.shell:agent:kilo"
+		comment = "com.sandpolis.plugin.shell:agent:kilo"
+	}
+}

@@ -7,8 +7,23 @@
 //  as published by the Mozilla Foundation.                                   //
 //                                                                            //
 //============================================================================//
+package com.sandpolis.plugin.shell.agent.kilo.shell;
 
-rootProject.name = "com.sandpolis.plugin.shell"
+public class CmdShell extends AbstractShell {
 
-include("agent:kilo")
-include("client:lifegem")
+	@Override
+	public String[] searchPath() {
+		return new String[] { "C:/Windows/System32/cmd.exe" };
+	}
+
+	@Override
+	public String[] buildSession() {
+		return new String[] { location };
+	}
+
+	@Override
+	public String[] buildCommand(String command) {
+		return new String[] { location, "/C", command };// TODO encode command
+	}
+
+}
