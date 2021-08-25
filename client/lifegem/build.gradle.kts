@@ -15,7 +15,7 @@ plugins {
 	id("sandpolis-soi")
 
 	id("org.openjfx.javafxplugin") version "0.0.10"
-	kotlin("jvm") version "1.5.20"
+	kotlin("jvm") version "1.5.30"
 }
 
 repositories {
