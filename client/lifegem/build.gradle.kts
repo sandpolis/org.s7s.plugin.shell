@@ -13,10 +13,9 @@ plugins {
 	id("sandpolis-java")
 	id("sandpolis-module")
 	id("sandpolis-soi")
-
-	id("org.openjfx.javafxplugin") version "0.0.10"
-	kotlin("jvm") version "1.5.20"
 }
+
+import org.ajoberstar.grgit.Grgit
 
 repositories {
 	maven {
@@ -31,12 +30,11 @@ dependencies {
 
 	compileOnly(project(":com.sandpolis.client.lifegem"))
 
-	implementation("no.tornado:tornadofx:2.0.0-SNAPSHOT")
-}
+	compileOnly("no.tornado:tornadofx:2.0.0-SNAPSHOT")
 
-javafx {
-	modules = listOf( "javafx.controls", "javafx.fxml", "javafx.graphics", "javafx.web", "javafx.swing" )
-	version = "16"
+	compileOnly("org.openjfx:javafx-base:16")
+	compileOnly("org.openjfx:javafx-graphics:16")
+	compileOnly("org.openjfx:javafx-controls:16")
 }
 
 eclipse {
@@ -44,4 +42,34 @@ eclipse {
 		name = "com.sandpolis.plugin.shell:client:lifegem"
 		comment = "com.sandpolis.plugin.shell:client:lifegem"
 	}
+}
+
+val cloneHterm by tasks.creating {
+	enabled = !project.file("build/libapps").exists()
+
+	doLast {
+		Grgit.clone {
+			dir = project.file("build/libapps")
+			uri = "https://chromium.googlesource.com/apps/libapps"
+		}
+	}
+}
+
+val buildHterm by tasks.creating(Exec::class) {
+	dependsOn(cloneHterm)
+	enabled = !project.file("build/libapps/hterm/dist/js/hterm_all.js").exists()
+
+	commandLine("build/libapps/hterm/bin/mkdist")
+}
+
+val copyHterm by tasks.creating(Copy::class) {
+	from("build/libapps/hterm/dist/js/hterm_all.js")
+	from("build/libapps/hterm/html/hterm.html")
+
+	into("src/main/resources")
+}
+
+// Add dependency if necessary
+if (! project.file("src/main/resources/hterm.html").exists() || ! project.file("src/main/resources/hterm_all.js").exists()) {
+	tasks.findByName("processResources")?.dependsOn(buildHterm)
 }
