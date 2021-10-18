@@ -8,6 +8,8 @@ module com.sandpolis.plugin.shell.client.lifegem {
 	requires com.sandpolis.client.lifegem;
 	requires com.sandpolis.core.instance;
     requires tornadofx;
+	requires com.fasterxml.jackson.annotation;
+	requires com.fasterxml.jackson.databind;
 
     provides com.sandpolis.core.instance.plugin.SandpolisPlugin with com.sandpolis.plugin.shell.client.lifegem.ShellPlugin;
 }

@@ -12,9 +12,9 @@ plugins {
 	id("java-library")
 	id("sandpolis-java")
 	id("sandpolis-module")
-	id("sandpolis-soi")
 }
 
+import org.gradle.internal.os.OperatingSystem
 import org.ajoberstar.grgit.Grgit
 
 repositories {
@@ -32,9 +32,22 @@ dependencies {
 
 	compileOnly("no.tornado:tornadofx:2.0.0-SNAPSHOT")
 
-	compileOnly("org.openjfx:javafx-base:16")
-	compileOnly("org.openjfx:javafx-graphics:16")
-	compileOnly("org.openjfx:javafx-controls:16")
+	if (OperatingSystem.current().isMacOsX()) {
+		compileOnly("org.openjfx:javafx-base:17:mac")
+		compileOnly("org.openjfx:javafx-graphics:17:mac")
+		compileOnly("org.openjfx:javafx-controls:17:mac")
+		compileOnly("org.openjfx:javafx-web:17:mac")
+	} else if (OperatingSystem.current().isLinux()) {
+		compileOnly("org.openjfx:javafx-base:17:linux")
+		compileOnly("org.openjfx:javafx-graphics:17:linux")
+		compileOnly("org.openjfx:javafx-controls:17:linux")
+		compileOnly("org.openjfx:javafx-web:17:linux")
+	} else if (OperatingSystem.current().isWindows()) {
+		compileOnly("org.openjfx:javafx-base:17:windows")
+		compileOnly("org.openjfx:javafx-graphics:17:windows")
+		compileOnly("org.openjfx:javafx-controls:17:windows")
+		compileOnly("org.openjfx:javafx-web:17:windows")
+	}
 }
 
 eclipse {

@@ -24,7 +24,6 @@ import com.sandpolis.core.net.exelet.Exelet;
 import com.sandpolis.core.net.exelet.ExeletContext;
 import com.sandpolis.core.net.stream.InboundStreamAdapter;
 import com.sandpolis.core.net.stream.OutboundStreamAdapter;
-import com.sandpolis.core.foundation.util.SystemUtil;
 import com.sandpolis.plugin.shell.msg.MsgPower.RQ_PowerChange;
 import com.sandpolis.plugin.shell.msg.MsgShell.EV_ShellStream;
 import com.sandpolis.plugin.shell.msg.MsgShell.RQ_Execute;
@@ -86,54 +85,6 @@ public final class ShellExe extends Exelet {
 		}
 
 		return rs;
-	}
-
-	@Handler(auth = true)
-	public static void rq_power_change(RQ_PowerChange rq) throws Exception {
-		// TODO check permissions
-		// TODO avoid switches
-		switch (SystemUtil.OS_TYPE) {
-		case LINUX:
-			switch (rq.getChange()) {
-			case POWEROFF:
-				Runtime.getRuntime().exec("sudo poweroff").waitFor();
-				break;
-			case RESTART:
-				Runtime.getRuntime().exec("sudo reboot").waitFor();
-				break;
-			default:
-				break;
-			}
-			break;
-		case DARWIN:
-			switch (rq.getChange()) {
-			case POWEROFF:
-				Runtime.getRuntime().exec("sudo shutdown -h now").waitFor();
-				break;
-			case RESTART:
-				Runtime.getRuntime().exec("sudo shutdown -r now").waitFor();
-				break;
-			default:
-				break;
-			}
-			break;
-		case WINDOWS:
-			switch (rq.getChange()) {
-			case POWEROFF:
-				Runtime.getRuntime().exec("shutdown /p").waitFor();
-				break;
-			case RESTART:
-				Runtime.getRuntime().exec("shutdown /r").waitFor();
-				break;
-			default:
-				break;
-			}
-			break;
-		default:
-			break;
-		}
-
-		System.exit(0);
 	}
 
 	@Handler(auth = true)
