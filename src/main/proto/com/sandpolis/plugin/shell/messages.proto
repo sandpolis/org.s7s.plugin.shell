@@ -9,9 +9,9 @@
 //============================================================================//
 syntax = "proto3";
 
-package plugin.shell.msg;
+package plugin.shell;
 
-option java_package = "com.sandpolis.plugin.shell.msg";
+option java_package = "com.sandpolis.plugin.shell";
 
 enum Shell {
     // Microsoft PowerShell
