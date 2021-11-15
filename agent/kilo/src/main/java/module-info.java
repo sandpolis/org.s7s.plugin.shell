@@ -8,8 +8,6 @@
 //                                                                            //
 //============================================================================//
 module com.sandpolis.plugin.shell.agent.kilo {
-	exports com.sandpolis.plugin.shell.agent.kilo.exe;
-	exports com.sandpolis.plugin.shell.agent.kilo.shell;
 	exports com.sandpolis.plugin.shell.agent.kilo.stream;
 	exports com.sandpolis.plugin.shell.agent.kilo;
 

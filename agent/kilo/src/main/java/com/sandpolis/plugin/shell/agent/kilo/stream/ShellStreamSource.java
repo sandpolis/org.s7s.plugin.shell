@@ -18,9 +18,9 @@ import org.slf4j.LoggerFactory;
 
 import com.google.protobuf.ByteString;
 import com.sandpolis.core.net.stream.StreamSource;
-import com.sandpolis.plugin.shell.msg.MsgShell.EV_ShellStream;
+import com.sandpolis.plugin.shell.Messages.EV_ShellStreamOutput;
 
-public class ShellStreamSource extends StreamSource<EV_ShellStream> {
+public class ShellStreamSource extends StreamSource<EV_ShellStreamOutput> {
 
 	private static final Logger log = LoggerFactory.getLogger(ShellStreamSource.class);
 
@@ -33,7 +33,7 @@ public class ShellStreamSource extends StreamSource<EV_ShellStream> {
 		try (var out = process.getInputStream()) {
 			while (!Thread.currentThread().isInterrupted()) {
 				while ((read = out.read(buffer, 0, 8192)) >= 0) {
-					submit(EV_ShellStream.newBuilder().setData(ByteString.copyFrom(buffer, 0, read)).build());
+					submit(EV_ShellStreamOutput.newBuilder().setStdout(ByteString.copyFrom(buffer, 0, read)).build());
 				}
 			}
 		} catch (IOException e) {

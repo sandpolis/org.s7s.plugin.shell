@@ -14,9 +14,9 @@ import static com.google.common.base.Preconditions.checkArgument;
 import java.io.IOException;
 
 import com.sandpolis.core.net.stream.StreamSink;
-import com.sandpolis.plugin.shell.msg.MsgShell.EV_ShellStream;
+import com.sandpolis.plugin.shell.Messages.EV_ShellStreamInput;
 
-public class ShellStreamSink extends StreamSink<EV_ShellStream> {
+public class ShellStreamSink extends StreamSink<EV_ShellStreamInput> {
 
 	private Process process;
 
@@ -26,10 +26,10 @@ public class ShellStreamSink extends StreamSink<EV_ShellStream> {
 	}
 
 	@Override
-	public void onNext(EV_ShellStream item) {
-		if (!item.getData().isEmpty()) {
+	public void onNext(EV_ShellStreamInput item) {
+		if (!item.getStdin().isEmpty()) {
 			try {
-				process.getOutputStream().write(item.getData().toByteArray());
+				process.getOutputStream().write(item.getStdin().toByteArray());
 				process.getOutputStream().flush();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

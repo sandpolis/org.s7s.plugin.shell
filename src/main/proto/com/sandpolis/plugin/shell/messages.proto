@@ -112,6 +112,10 @@ message RQ_ShellStream {
     int32 cols = 6;
 }
 
+enum RS_ShellStream {
+    SHELL_STREAM_OK = 0;
+}
+
 // Event containing standard-input to a shell
 message EV_ShellStreamInput {
 

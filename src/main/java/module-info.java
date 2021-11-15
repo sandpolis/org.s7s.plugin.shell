@@ -8,7 +8,7 @@
 //                                                                            //
 //============================================================================//
 module com.sandpolis.plugin.shell {
-	exports com.sandpolis.plugin.shell.msg;
+	exports com.sandpolis.plugin.shell;
 
 	requires com.google.protobuf;
 	requires com.sandpolis.core.instance;
