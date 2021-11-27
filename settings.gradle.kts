@@ -12,3 +12,14 @@ rootProject.name = "com.sandpolis.plugin.shell"
 
 include("agent:kilo")
 include("client:lifegem")
+
+buildscript {
+	repositories {
+		maven {
+			url = uri("https://plugins.gradle.org/m2/")
+		}
+	}
+	dependencies {
+		classpath("com.sandpolis:com.sandpolis.build:+")
+	}
+}
