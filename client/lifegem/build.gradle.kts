@@ -10,6 +10,7 @@
 
 plugins {
 	id("java-library")
+	kotlin("jvm") version "1.6.0"
 	id("com.sandpolis.build.module")
 }
 
@@ -23,7 +24,8 @@ repositories {
 }
 
 dependencies {
-	testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.2")
+	testImplementation("org.junit.jupiter:junit-jupiter-api:5.+")
+	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.+")
 
 	compileOnly(project.getParent()?.getParent()!!)
 
