@@ -29,7 +29,7 @@ dependencies {
 
 	compileOnly(project.getParent()?.getParent()!!)
 
-	compileOnly(project(":com.sandpolis.client.lifegem"))
+	compileOnly(project(":instance:com.sandpolis.client.lifegem"))
 
 	compileOnly("no.tornado:tornadofx:2.0.0-SNAPSHOT")
 
