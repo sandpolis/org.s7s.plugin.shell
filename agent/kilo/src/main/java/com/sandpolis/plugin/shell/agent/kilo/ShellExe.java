@@ -9,15 +9,15 @@
 //============================================================================//
 package com.sandpolis.plugin.shell.agent.kilo;
 
-import static com.sandpolis.core.net.stream.StreamStore.StreamStore;
+import static com.sandpolis.core.instance.stream.StreamStore.StreamStore;
 
 import java.io.InputStreamReader;
 
 import com.google.common.io.CharStreams;
-import com.sandpolis.core.net.exelet.Exelet;
-import com.sandpolis.core.net.exelet.ExeletContext;
-import com.sandpolis.core.net.stream.InboundStreamAdapter;
-import com.sandpolis.core.net.stream.OutboundStreamAdapter;
+import com.sandpolis.core.instance.exelet.Exelet;
+import com.sandpolis.core.instance.exelet.ExeletContext;
+import com.sandpolis.core.instance.stream.InboundStreamAdapter;
+import com.sandpolis.core.instance.stream.OutboundStreamAdapter;
 import com.sandpolis.plugin.shell.Messages.EV_ShellStreamInput;
 import com.sandpolis.plugin.shell.Messages.EV_ShellStreamOutput;
 import com.sandpolis.plugin.shell.Messages.RQ_Execute;

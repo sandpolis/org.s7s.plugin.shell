@@ -17,7 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.protobuf.ByteString;
-import com.sandpolis.core.net.stream.StreamSource;
+import com.sandpolis.core.instance.stream.StreamSource;
 import com.sandpolis.plugin.shell.Messages.EV_ShellStreamOutput;
 
 public class ShellStreamSource extends StreamSource<EV_ShellStreamOutput> {

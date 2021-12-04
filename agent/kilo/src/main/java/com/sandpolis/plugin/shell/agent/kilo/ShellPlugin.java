@@ -10,8 +10,8 @@
 package com.sandpolis.plugin.shell.agent.kilo;
 
 import com.sandpolis.core.instance.plugin.SandpolisPlugin;
-import com.sandpolis.core.net.exelet.Exelet;
-import com.sandpolis.core.net.plugin.ExeletProvider;
+import com.sandpolis.core.instance.exelet.Exelet;
+import com.sandpolis.core.instance.plugin.ExeletProvider;
 
 public final class ShellPlugin extends SandpolisPlugin implements ExeletProvider {
 
