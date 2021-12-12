@@ -57,30 +57,34 @@ public record Shell(Path executable, Set<ShellCapability> capabilities, String v
 		String version = null;
 
 		// Check version output
-		S7SProcess.exec(executable, "--version").string().ifPresent(output -> {
-			if (output.startsWith("zsh")) {
-				capabilities.add(ShellCapability.ZSH);
-				capabilities.add(ShellCapability.BASH);
-				capabilities.add(ShellCapability.SH);
-			}
+		S7SProcess.exec(executable, "--version").complete((exit, stdout, stderr) -> {
+			if (exit == 0) {
+				if (stdout.startsWith("zsh")) {
+					capabilities.add(ShellCapability.ZSH);
+					capabilities.add(ShellCapability.BASH);
+					capabilities.add(ShellCapability.SH);
+				}
 
-			if (output.startsWith("GNU bash,")) {
-				capabilities.add(ShellCapability.BASH);
-				capabilities.add(ShellCapability.SH);
+				if (stdout.startsWith("GNU bash,")) {
+					capabilities.add(ShellCapability.BASH);
+					capabilities.add(ShellCapability.SH);
+				}
 			}
 		});
 
 		// Check help output if we need to
-		S7SProcess.exec(executable, "--help").string().ifPresent(output -> {
-			if (output.startsWith("Usage: zsh")) {
-				capabilities.add(ShellCapability.ZSH);
-				capabilities.add(ShellCapability.BASH);
-				capabilities.add(ShellCapability.SH);
-			}
+		S7SProcess.exec(executable, "--help").complete((exit, stdout, stderr) -> {
+			if (exit == 0) {
+				if (stdout.startsWith("Usage: zsh")) {
+					capabilities.add(ShellCapability.ZSH);
+					capabilities.add(ShellCapability.BASH);
+					capabilities.add(ShellCapability.SH);
+				}
 
-			if (output.startsWith("GNU bash,")) {
-				capabilities.add(ShellCapability.BASH);
-				capabilities.add(ShellCapability.SH);
+				if (stdout.startsWith("GNU bash,")) {
+					capabilities.add(ShellCapability.BASH);
+					capabilities.add(ShellCapability.SH);
+				}
 			}
 		});
 
