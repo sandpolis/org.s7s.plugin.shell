@@ -10,7 +10,7 @@
 
 plugins {
 	id("java-library")
-	kotlin("jvm") version "1.6.0"
+	kotlin("jvm") version "1.6.10"
 	id("com.sandpolis.build.module")
 }
 
