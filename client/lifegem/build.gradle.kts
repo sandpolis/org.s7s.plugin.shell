@@ -29,25 +29,16 @@ dependencies {
 
 	compileOnly(project.getParent()?.getParent()!!)
 
-	compileOnly(project(":instance:com.sandpolis.client.lifegem"))
-
-	compileOnly("no.tornado:tornadofx:2.0.0-SNAPSHOT")
-
-	if (OperatingSystem.current().isMacOsX()) {
-		compileOnly("org.openjfx:javafx-base:17:mac")
-		compileOnly("org.openjfx:javafx-graphics:17:mac")
-		compileOnly("org.openjfx:javafx-controls:17:mac")
-		compileOnly("org.openjfx:javafx-web:17:mac")
-	} else if (OperatingSystem.current().isLinux()) {
-		compileOnly("org.openjfx:javafx-base:17:linux")
-		compileOnly("org.openjfx:javafx-graphics:17:linux")
-		compileOnly("org.openjfx:javafx-controls:17:linux")
-		compileOnly("org.openjfx:javafx-web:17:linux")
-	} else if (OperatingSystem.current().isWindows()) {
-		compileOnly("org.openjfx:javafx-base:17:windows")
-		compileOnly("org.openjfx:javafx-graphics:17:windows")
-		compileOnly("org.openjfx:javafx-controls:17:windows")
-		compileOnly("org.openjfx:javafx-web:17:windows")
+	findProject(":instance:com.sandpolis.client.lifegem")?.let {
+		compileOnly(it)
+	} ?: run {
+		if (OperatingSystem.current().isMacOsX()) {
+			compileOnly("com.sandpolis:client.lifegem:+:macos")
+		} else if (OperatingSystem.current().isLinux()) {
+			compileOnly("com.sandpolis:client.lifegem:+:linux")
+		} else {
+			compileOnly("com.sandpolis:client.lifegem:+:windows")
+		}
 	}
 }
 
