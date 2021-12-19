@@ -6,19 +6,28 @@
 //  version 2. You may not use this file except in compliance with the MPLv2. //
 //                                                                            //
 //============================================================================//
+package org.s7s.plugin.shell.client.lifegem
 
-rootProject.name = "org.s7s.plugin.shell"
+import org.s7s.core.instance.state.st.STDocument
+import org.s7s.plugin.shell.client.lifegem.TerminalView
+import org.s7s.instance.client.desktop.plugin.AgentViewExtension
+import tornadofx.*
 
-include("agent:java")
-include("client:lifegem")
+class ShellView : AgentViewExtension("Shell") {
+    override fun nowVisible(profile: STDocument) {
+    }
 
-buildscript {
-	repositories {
-		maven {
-			url = uri("https://plugins.gradle.org/m2/")
-		}
-	}
-	dependencies {
-		classpath("org.s7s:org.s7s.build:+")
-	}
+    override fun nowInvisible() {
+    }
+
+    val term = TerminalView()
+
+    override val root = titledpane("Shell") {
+        content = term
+    }
+
+    init {
+        term.prefWidthProperty().bind(this.root.widthProperty())
+        term.prefHeightProperty().bind(this.root.heightProperty())
+    }
 }

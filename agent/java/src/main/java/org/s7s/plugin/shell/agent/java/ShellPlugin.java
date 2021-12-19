@@ -6,19 +6,17 @@
 //  version 2. You may not use this file except in compliance with the MPLv2. //
 //                                                                            //
 //============================================================================//
+package org.s7s.plugin.shell.agent.java;
 
-rootProject.name = "org.s7s.plugin.shell"
+import org.s7s.core.instance.plugin.SandpolisPlugin;
+import org.s7s.core.instance.exelet.Exelet;
+import org.s7s.core.instance.plugin.ExeletProvider;
 
-include("agent:java")
-include("client:lifegem")
+public final class ShellPlugin extends SandpolisPlugin implements ExeletProvider {
 
-buildscript {
-	repositories {
-		maven {
-			url = uri("https://plugins.gradle.org/m2/")
-		}
-	}
-	dependencies {
-		classpath("org.s7s:org.s7s.build:+")
+	@Override
+	@SuppressWarnings("unchecked")
+	public Class<? extends Exelet>[] getExelets() {
+		return new Class[] { ShellExe.class };
 	}
 }

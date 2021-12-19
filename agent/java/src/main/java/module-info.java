@@ -6,19 +6,16 @@
 //  version 2. You may not use this file except in compliance with the MPLv2. //
 //                                                                            //
 //============================================================================//
+module org.s7s.plugin.shell.agent.java {
+	exports org.s7s.plugin.shell.agent.java.stream;
+	exports org.s7s.plugin.shell.agent.java;
 
-rootProject.name = "org.s7s.plugin.shell"
+	requires com.google.common;
+	requires com.google.protobuf;
+	requires org.s7s.core.foundation;
+	requires org.s7s.core.instance;
+	requires org.s7s.plugin.shell;
+	requires org.slf4j;
 
-include("agent:java")
-include("client:lifegem")
-
-buildscript {
-	repositories {
-		maven {
-			url = uri("https://plugins.gradle.org/m2/")
-		}
-	}
-	dependencies {
-		classpath("org.s7s:org.s7s.build:+")
-	}
+	provides org.s7s.core.instance.plugin.SandpolisPlugin with org.s7s.plugin.shell.agent.java.ShellPlugin;
 }

@@ -6,19 +6,19 @@
 //  version 2. You may not use this file except in compliance with the MPLv2. //
 //                                                                            //
 //============================================================================//
+package org.s7s.plugin.shell.client.lifegem;
 
-rootProject.name = "org.s7s.plugin.shell"
+import org.s7s.instance.client.desktop.plugin.AgentViewExtension;
+import org.s7s.instance.client.desktop.plugin.AgentViewProvider;
+import org.s7s.core.instance.plugin.SandpolisPlugin;
+//import org.s7s.plugin.shell.client.lifegem.ShellView;
 
-include("agent:java")
-include("client:lifegem")
+public class ShellPlugin extends SandpolisPlugin implements AgentViewProvider {
 
-buildscript {
-	repositories {
-		maven {
-			url = uri("https://plugins.gradle.org/m2/")
-		}
+	@Override
+	public AgentViewExtension[] getAgentViews() {
+		// return new AgentViewExtension[] { new ShellView() };
+		return null;
 	}
-	dependencies {
-		classpath("org.s7s:org.s7s.build:+")
-	}
+
 }

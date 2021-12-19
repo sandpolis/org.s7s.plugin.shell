@@ -6,19 +6,18 @@
 //  version 2. You may not use this file except in compliance with the MPLv2. //
 //                                                                            //
 //============================================================================//
+module org.s7s.plugin.shell.client.lifegem {
+	exports org.s7s.plugin.shell.client.lifegem;
 
-rootProject.name = "org.s7s.plugin.shell"
+	requires javafx.base;
+	requires javafx.graphics;
+	requires javafx.web;
+	requires jdk.jsobject;
+	requires org.s7s.instance.client.desktop;
+	requires org.s7s.core.instance;
+	requires tornadofx;
+	requires com.fasterxml.jackson.annotation;
+	requires com.fasterxml.jackson.databind;
 
-include("agent:java")
-include("client:lifegem")
-
-buildscript {
-	repositories {
-		maven {
-			url = uri("https://plugins.gradle.org/m2/")
-		}
-	}
-	dependencies {
-		classpath("org.s7s:org.s7s.build:+")
-	}
+	provides org.s7s.core.instance.plugin.SandpolisPlugin with org.s7s.plugin.shell.client.lifegem.ShellPlugin;
 }
